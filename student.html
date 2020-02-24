@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<script src="student.js"></script> <!--script to handle db loading-->
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body onload="loadDD()">
+	<h1 id="header">Welcome, student</h1>
+	<button id="logout" onclick="logOut()">Log Out</button>
+	<script>
+		var user = sessionStorage.getItem("ucid");
+		document.getElementById("header").innerHTML = "Welcome Student, " + user;
+	</script>
+	<div >
+		<table width="100%">
+			<tr>
+				<td align="right"><label>Take Exam: </label></td>
+				<td>
+					<select id="takeExam">
+						<option value="">--------------------</option>
+					</select>
+					<button onclick="redirect('takeExam.html', 'takeExam')">Go</button>
+				</td>
+			</tr>
+			<tr>
+				<td align="right"><label>Review Exam: </label></td>
+				<td>
+					<select id="reviewExam">
+						<option value="">--------------------</option>
+					</select>
+					<button onclick="redirect('reviewExam.html', 'reviewExam')">Go</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>

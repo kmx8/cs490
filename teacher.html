@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<script src="teacher.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body onload="onLoad()">
+	<h1 id="header" align="left"></h1>
+	<button id="logout" onclick="logOut()">Log Out</button>
+	<script> 
+		var user = sessionStorage.getItem("ucid");
+		document.getElementById("header").innerHTML = "Welcome professor, " + user;
+	</script>
+	<div class="tab">
+		<button class="tablinks" onclick="openTab(event, 'bank')">Question Bank</button>
+		<button class="tablinks" onclick="openTab(event, 'exam')">Exam</button>
+		<button class="tablinks" onclick="openTab(event, 'grading')">Grading</button>
+	</div>
+	<div id="bank" class="tabcontent">
+		<div class="split left" style="padding-left: 250px;" id="left">
+			<h1>Add Question</h1>
+			<form method="POST" class="questionAdd">	
+				<!--question, topic(dropbox), difficulty(radio buttons or drop), -->
+				<label>Function Name: </label>
+				<input type ="text" id="funcName" name="funcName"></input><br><br>
+				<label>Question: </label>
+				<textarea rows="6" cols="50" type="text" id="question" name="question" width="50%" height="25%"></textarea><br><br>
+				<label>Testcase In: </label>
+				<input type="text"  id="testIn" name="testIn"></input>
+				<br>
+				<label>Testcase Out: </label>
+				<input type="text" id="testOut" name="testOut"></input>
+				<br><br>
+				<label>Topic: </label>
+				<select id="topic" name="topic">
+					<option value="string">String</option>
+					<option value="list">List</option>
+					<option value="for">For</option>
+					<option value="while">While</option>
+					<option value="function">Function</option>
+					<option value="math">Math</option>
+					<option value="array">Array</option>
+				</select><br><br>
+				<label><b>Difficulty:</b> </label>
+				<select id="difficulty" name="difficulty">
+					<option value="easy">Easy</option>
+					<option value="medium">Medium</option>
+					<option value="hard">Hard</option>
+				</select><br><br>
+				<label><b>Constraints: </b> </label>
+				<select id="constraints">
+					<option value="return">Return</option>
+					<option value="print">Print</option>
+					<option value="for">For Loop</option>
+					<option value="while">While Loop</option>
+				</select><br><br>
+				<button type="reset">Clear</button>
+				<button type="button" id="submit" onclick="addBank(updateDisplays())">Add Question</button>
+			</form>
+			<h1>Add Exam</h1><br>
+			<label>Exam Name: </label>
+			<input type="text" id="examName"></input>
+			<button onclick="addExam()">Add Exam</button>
+			<p id="enResp"></p>
+		</div>
+		<div class="split right" id="right">
+			<!-- this is for displaying question bank with filter and allows to add to exam-->
+			<div>
+				<h1>Question Bank</h1>
+				<!--insert search-->
+				<label><b>Topic:</b> </label>
+				<select id="topicDD">
+					<option value="">--------</option>
+					<option value="string">String</option>
+					<option value="list">List</option>
+					<option value="for">For</option>
+					<option value="while">While</option>
+					<option value="function">Function</option>
+					<option value="math">Math</option>
+					<option value="array">Array</option>
+				</select>
+				<label><b>Difficulty:</b> </label>
+				<select id="diffDD">
+					<option value="">--------</option>
+					<option value="easy">Easy</option>
+					<option value="medium">Medium</option>
+					<option value="hard">Hard</option>
+				</select>
+				<label><b>Keyword:</b> </label>
+				<input type="text" id="keyword" placeholder="Search by Keyword"></input>
+				<button onclick="displayBank()">SEARCH</button>
+				<form method="POST">
+					<p id="questionBank"></p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="exam" class="tabcontent">
+		<div class="split left" id="left2">
+			<h1>Select Exam</h2>
+			<form>
+				<p id="examBank"></p>
+				<p id="exams"></p>
+			</form>
+		</div>
+		<div class="split right" id="right2">
+			<h1>Question Bank</h1>
+			<div>
+				<label><b>Topic:</b> </label>
+				<select id="topicDD2">
+					<option value="">--------</option>
+					<option value="string">String</option>
+					<option value="list">List</option>
+					<option value="for">For</option>
+					<option value="while">While</option>
+					<option value="function">Function</option>
+					<option value="math">Math</option>
+					<option value="array">Array</option>
+				</select>
+				<label><b>Difficulty:</b> </label>
+				<select id="diffDD2">
+					<option value="">--------</option>
+					<option value="easy">Easy</option>
+					<option value="medium">Medium</option>
+					<option value="hard">Hard</option>
+				</select>
+				<label><b>Keyword:</b> </label>
+				<input type="text" id="keyword2" placeholder="Search by Keyword"></input>
+				<button onclick="displayBank2()">SEARCH</button>
+				<form method="POST">
+					<p id="questionBank"></p>
+				</form>
+			</div>
+			<form method="POST">
+				<p id="questionBank2"></p>
+				<button type="reset">Reset</button>
+				<button type="button" onclick="addToExam();">ADD</button>
+			</form>
+		</div>
+	</div>
+	<div id="grading" class="tabcontent">
+		<span style="height:100%;width:100%;">
+			<label>Choose Exam to Grade: </label>
+			<span id="examDropDown"></span><br><br>
+			<span id="studentD"></span>	
+			<span id="loadExam"></span>	
+			<p id="gradeResp"></p>
+			<button type="button" onclick="sendGrade()">Grade</button>
+		</span>
+	</div>
+</body>
+
+</html>

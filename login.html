@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<title>CS 490 Project</title>
+	<script src="login.js" type="text/JavaScript"></script>
+</head>
+<body>
+	<h2 align="center">cs490 project login</h2>
+	<div class="container">
+		<section id="content">
+			<form method="POST">
+				<label>UCID</label><br>
+				<input type="text" id="username" name="username" autocomplete="off">
+				<br><br>
+				<label>Password</label><br>
+				<input type="password" id="password" name="password">
+				<br><br>
+				<button type="button" id="submit" onclick="login()">Submit</button>
+			</form>
+		</section>
+	</div>
+	<br><br>
+	<p id="response" align="center"></p>
+</body>
+
+</html>

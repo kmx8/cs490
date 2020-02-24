@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Take Exam</title>
+	<script src="student.js" type="text/Javascript"></script>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body onload="getExam()">
+	<h1 id="examName"></h1>
+	<p id="loadExam"></p>
+	<p id="response"></p>
+	<button onclick="sendExam()">SUBMIT</button>
+	<script type="text/javascript">
+		var myInput = document.getElementsByTagName("TEXTAREA");
+		if(myInput.addEventListener ) {
+			myInput.addEventListener('keydown',this.keyHandler,false);
+		} else if(myInput.attachEvent ) {
+			myInput.attachEvent('onkeydown',this.keyHandler); /* damn IE hack */
+		}
+
+		function keyHandler(e) {
+			var TABKEY = 9;
+			if(e.keyCode == TABKEY) {
+				this.value += "    ";
+				if(e.preventDefault) {
+					e.preventDefault();
+				}
+				return false;
+			}
+		}
+	</script>
+</body
+</html>
